@@ -14,6 +14,7 @@
 * cudnn 7.4.1
 * Python 3.6
 * Pytorch 1.0
+* yacs v0.1.5
 
 
 ##### Results

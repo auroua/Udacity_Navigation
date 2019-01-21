@@ -1,6 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from configs.agent_config import get_cfg_defaults
+
+cfgs_model = get_cfg_defaults().MODEL_PARAMETER
+cfgs_env = get_cfg_defaults().ENV_PARAMETER
 
 
 class QNetwork(nn.Module):
@@ -17,13 +21,15 @@ class QNetwork(nn.Module):
         self.seed = torch.manual_seed(seed)
         self.state_size = state_size
         self.action_size = action_size
-        self.fc1 = nn.Linear(8, 128)
-        self.fc2 = nn.Linear(128, 64)
-        self.fc3 = nn.Linear(64, 4)
+        self.fc1 = nn.Linear(cfgs_model.STATE_SIZE, cfgs_model.H1)
+        self.fc2 = nn.Linear(cfgs_model.H1, cfgs_model.H2)
+        self.fc3 = nn.Linear(cfgs_model.H2, cfgs_model.H3)
+        self.fc4 = nn.Linear(cfgs_model.H3, cfgs_env.ACTION_SIZE)
 
     def forward(self, state):
         """Build a network that maps state -> action values."""
         x = F.relu(self.fc1(state))
         x = F.relu(self.fc2(x))
-        x = self.fc3(x)
+        x = F.relu(self.fc3(x))
+        x = self.fc4(x)
         return x
