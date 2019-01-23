@@ -11,7 +11,7 @@ _C.HYPER_PARAMETER.BATCH_SIZE = 64
 # Soft Update of Target Parameters
 _C.HYPER_PARAMETER.TAU = 1e-3
 # Learning Rate
-_C.HYPER_PARAMETER.LR = 5e-3
+_C.HYPER_PARAMETER.LR = 5e-4
 # MOMENTUM
 _C.HYPER_PARAMETER.MOMENTUM = 0.9
 # NetWork Update Frequency
@@ -26,6 +26,8 @@ _C.HYPER_PARAMETER.MODEL_TYPE = 'QNetwork'
 _C.HYPER_PARAMETER.AGENT_TYPE = 'DqnAgent'
 # The Optimizer used for training (SGD, ADAM)
 _C.HYPER_PARAMETER.OPTIMIZER = 'ADAM'
+# Training algorithms
+_C.HYPER_PARAMETER.INTERFACE = 'dqn'
 
 _C.MODEL_PARAMETER = CN()
 # Fully Connection Model Hidden Layer Parameter
