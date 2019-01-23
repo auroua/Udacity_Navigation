@@ -7,15 +7,13 @@ from agent import Agent
 from configs.agent_config import get_cfg_defaults
 
 cfgs = get_cfg_defaults().HYPER_PARAMETER
-cfgs_env = get_cfg_defaults().ENV_PARAMETER
-
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 class DqnAgent(Agent):
     """Interacts with and learns from the environment."""
 
-    def __init__(self, seed):
+    def __init__(self, state_size, action_size, seed):
         """Initialize an Agent object.
 
         Params
@@ -24,11 +22,14 @@ class DqnAgent(Agent):
             action_size (int): dimension of each action
             seed (int): random seed
         """
-        Agent.__init__(self, seed)
+        Agent.__init__(self, state_size, action_size, seed)
         # Q-Network
-        self.qnetwork_local = getattr(models, cfgs.MODEL_TYPE)(cfgs_env.STATE_SIZE, cfgs_env.ACTION_SIZE, seed).to(device)
-        self.qnetwork_target = getattr(models, cfgs.MODEL_TYPE)(cfgs_env.STATE_SIZE, cfgs_env.ACTION_SIZE, seed).to(device)
-        self.opeimizer = optim.SGD(self.qnetwork_local.parameter(), lr=cfgs.LR)
+        self.qnetwork_local = getattr(models, cfgs.MODEL_TYPE)(self.state_size, self.action_size, seed).to(device)
+        self.qnetwork_target = getattr(models, cfgs.MODEL_TYPE)(self.state_size, self.action_size, seed).to(device)
+        if cfgs.OPTIMIZER == 'SGD':
+            self.optimizer = optim.SGD(self.qnetwork_local.parameters(), lr=cfgs.LR, momentum=cfgs.MOMENTUM)
+        elif cfgs.OPTIMIZER == 'ADAM':
+            self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=cfgs.LR)
 
     def act(self, state, eps=0.):
         """Returns actions for given state as per current policy.

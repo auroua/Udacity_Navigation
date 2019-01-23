@@ -5,13 +5,12 @@ import torch.nn.functional as F
 import torch
 
 cfgs = get_cfg_defaults().HYPER_PARAMETER
-cfgs_env = get_cfg_defaults().ENV_PARAMETER
 
 
 class Agent:
     """Interacts with and learns from the environment."""
 
-    def __init__(self, seed):
+    def __init__(self, state_size, action_size, seed):
         """Initialize an Agent object.
 
         Params
@@ -20,11 +19,11 @@ class Agent:
             action_size (int): dimension of each action
             seed (int): random seed
         """
-        self.state_size = cfgs_env.STATE_SIZE
-        self.action_size = cfgs_env.ACTION_SIZE
+        self.state_size = state_size
+        self.action_size = action_size
         self.seed = random.seed(seed)
         # Replay memory
-        self.memory = ReplayBuffer(cfgs_env.ACTION_SIZE, cfgs.BUFFER_SIZE, cfgs.BATCH_SIZE, seed)
+        self.memory = ReplayBuffer(self.action_size, cfgs.BUFFER_SIZE, cfgs.BATCH_SIZE, seed)
         assert cfgs.LOSS_TYPE in ('MSE', 'F1'), 'Loss type %s is not support, please choose "MSE" or "F1"'
         if cfgs.LOSS_TYPE == 'MSE':
             self.criterion = torch.nn.MSELoss()
