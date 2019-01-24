@@ -1,10 +1,10 @@
 import random
 from utils import ReplayBuffer
-from configs.agent_config import get_cfg_defaults
+from configs import get_dqn_cfg_defaults
 import torch.nn.functional as F
 import torch
 
-cfgs = get_cfg_defaults().HYPER_PARAMETER
+cfgs = get_dqn_cfg_defaults().HYPER_PARAMETER
 
 
 class Agent:

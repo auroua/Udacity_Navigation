@@ -1,1 +1,1 @@
-from .agent_config import get_cfg_defaults
+from .agent_dqn_config import get_dqn_cfg_defaults

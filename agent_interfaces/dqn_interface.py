@@ -1,9 +1,13 @@
 from collections import deque
 import torch
 import numpy as np
+from configs import get_dqn_cfg_defaults
+
+cfgs = get_dqn_cfg_defaults().HYPER_PARAMETER
 
 
-def dqn(agent, env, brain_name, n_episodes=2000, eps_start=1.0, eps_end=0.01, eps_decay=0.995):
+def dqn(agent, env, brain_name, n_episodes=cfgs.EPISODES,
+        eps_start=cfgs.EPS_START, eps_end=cfgs.EPS_END, eps_decay=cfgs.EPS_DECAY):
     """Deep Q-Learning.
 
     Params

@@ -16,6 +16,14 @@ _C.HYPER_PARAMETER.LR = 5e-4
 _C.HYPER_PARAMETER.MOMENTUM = 0.9
 # NetWork Update Frequency
 _C.HYPER_PARAMETER.UPDATE_EVERY = 4
+# Total Training Episodes
+_C.HYPER_PARAMETER.EPISODES = 2000
+# eps-greedy eps start value
+_C.HYPER_PARAMETER.EPS_START = 1.0
+# eps-greedy eps end value
+_C.HYPER_PARAMETER.EPS_END = 0.01
+# eps-greedy eps decay rate
+_C.HYPER_PARAMETER.EPS_DECAY = 0.995
 # Discount Factor
 _C.HYPER_PARAMETER.GAMMA = 0.99
 # Define the Loss Type. Support ('MSE', 'F1')
@@ -36,5 +44,5 @@ _C.MODEL_PARAMETER.H2 = 512
 _C.MODEL_PARAMETER.H3 = 512
 
 
-def get_cfg_defaults():
+def get_dqn_cfg_defaults():
     return _C.clone()

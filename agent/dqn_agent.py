@@ -4,9 +4,9 @@ import models
 import torch
 import torch.optim as optim
 from agent import Agent
-from configs.agent_config import get_cfg_defaults
+from configs import get_dqn_cfg_defaults
 
-cfgs = get_cfg_defaults().HYPER_PARAMETER
+cfgs = get_dqn_cfg_defaults().HYPER_PARAMETER
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 

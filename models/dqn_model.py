@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from configs.agent_config import get_cfg_defaults
+from configs import get_dqn_cfg_defaults
 
-cfgs_model = get_cfg_defaults().MODEL_PARAMETER
+cfgs_model = get_dqn_cfg_defaults().MODEL_PARAMETER
 
 
 class QNetwork(nn.Module):
