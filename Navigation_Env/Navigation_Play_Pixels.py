@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == '__main__':
-    env = UnityEnvironment(file_name="Banana_Env/Banana_Linux_Pixels/Banana.x86_64")
+    env = UnityEnvironment(file_name="../Banana_Env/Banana_Linux_Pixels/Banana.x86_64")
     # get the default brain
     brain_name = env.brain_names[0]
     brain = env.brains[brain_name]

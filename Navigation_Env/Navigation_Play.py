@@ -2,7 +2,7 @@ from unityagents import UnityEnvironment
 import numpy as np
 
 if __name__ == '__main__':
-    env = UnityEnvironment(file_name="Banana_Env/Banana_Linux/Banana.x86_64")
+    env = UnityEnvironment(file_name="../Banana_Env/Banana_Linux/Banana.x86_64")
     brain_name = env.brain_names[0]
     brain = env.brains[brain_name]
 
