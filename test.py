@@ -1,17 +1,16 @@
 import torch
-import numpy as np
-from collections import deque
 import matplotlib.pyplot as plt
 import agent
 from unityagents import UnityEnvironment
-from configs import get_cfg_defaults
+from configs import get_dqn_cfg_defaults
 plt.ion()
-cfgs = get_cfg_defaults().HYPER_PARAMETER
+cfgs = get_dqn_cfg_defaults().HYPER_PARAMETER
 
 
 def show_results(env, brain_name, agent):
     # load the weights from file
-    agent.qnetwork_local.load_state_dict(torch.load('checkpoint.pth', map_location=lambda storage, loc: storage))
+    agent.qnetwork_local.load_state_dict(torch.load('./results/checkpoint_dqn_vec.pth',
+                                                    map_location=lambda storage, loc: storage))
     with torch.no_grad():
         for i in range(3):
             score = 0
