@@ -1,12 +1,12 @@
 from collections import deque
 import torch
 import numpy as np
-from configs import get_dqn_cfg_defaults
+from utils.pytorch_utils import preprocess_state
+from configs import get_dqn_pix_cfg_defaults
+cfgs = get_dqn_pix_cfg_defaults().HYPER_PARAMETER
 
-cfgs = get_dqn_cfg_defaults().HYPER_PARAMETER
 
-
-def dqn_vec(agent, env, brain_name, n_episodes=cfgs.EPISODES,
+def dqn_pixel(agent, env, brain_name, n_episodes=cfgs.EPISODES,
         eps_start=cfgs.EPS_START, eps_end=cfgs.EPS_END, eps_decay=cfgs.EPS_DECAY):
     """Deep Q-Learning.
 
@@ -23,12 +23,14 @@ def dqn_vec(agent, env, brain_name, n_episodes=cfgs.EPISODES,
     eps = eps_start  # initialize epsilon
     for i_episode in range(1, n_episodes + 1):
         env_info = env.reset(train_mode=True)[brain_name]
-        state = env_info.vector_observations[0]
+        state = env_info.visual_observations[0]
+        state = preprocess_state(state)
         score = 0
         while True:
             action = agent.act(state, eps)
             env_info = env.step(action)[brain_name]
-            next_state = env_info.vector_observations[0]  # get the next state
+            next_state = env_info.visual_observations[0]  # get the next state
+            next_state = preprocess_state(next_state)
             reward = env_info.rewards[0]  # get the reward
             done = env_info.local_done[0]  # see if episode has finished
             agent.step(state, action, reward, next_state, done)

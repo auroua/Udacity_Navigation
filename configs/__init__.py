@@ -1,1 +1,2 @@
 from .agent_dqn_config import get_dqn_cfg_defaults
+from .agent_dqn_pixel_config import get_dqn_pix_cfg_defaults
