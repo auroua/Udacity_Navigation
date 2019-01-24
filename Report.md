@@ -34,3 +34,9 @@ for i in episodes (0.....10000)
     ```
     ![sedv](./results/scores_episode_dqn_vec.png)
 
+
+#### Future Ideas
+* Implement Double DQN
+* Implement Dueling DQN
+* Using Prioritized Experience Replay
+* Implement Rainbow
