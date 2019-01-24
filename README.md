@@ -18,13 +18,15 @@
 
 
 ##### Results
-```
-Episode 100	Average Score: 0.67
-Episode 200	Average Score: 3.57
-Episode 300	Average Score: 6.35
-Episode 400	Average Score: 9.21
-Episode 500	Average Score: 11.19
-Episode 600	Average Score: 11.93
-Episode 647	 Score: 17.00
-Environment solved in 547 episodes!	Average Score: 13.01
-```
+*  **dqn_vec**
+
+    ```
+    Episode 100	Average Score: 0.76
+    Episode 200	Average Score: 3.49
+    Episode 300	Average Score: 6.43
+    Episode 400	Average Score: 9.61
+    Episode 500	Average Score: 12.18
+    Episode 559	 Score: 16.00
+    Environment solved in 459 episodes!	Average Score: 13.00
+    ```
+    ![sedv](./results/scores_episode_dqn_vec.png)
